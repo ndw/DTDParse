@@ -28,7 +28,7 @@ Subsequent processing is performed against this XML version.
 
 ## System Requirements
 
-DTDParse version V2.0beta3 requires Perl5 and the Text::DelimMatch
+DTDParse version V2.0beta3 requires Perl5 and the `Text::DelimMatch`
 module available from CPAN (www.cpan.org).
 
 ## Installation
@@ -72,3 +72,11 @@ documentation for the DTD.
 You can provide your own library (defining a few perl functions)
 to provide additional information for the documentation (such as
 reasonable descriptions).
+
+## Examples
+
+The HTML form of the documentation for the
+[HTML 4.0 Transitional](https://ndw.github.io/DTDParse/html40/) DTD
+is online. The
+[XML “database”](https://ndw.github.io/DTDParse/html40.dtd.xml) produced
+by `dtdparse` is also online.
