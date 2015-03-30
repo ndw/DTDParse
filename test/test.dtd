@@ -1,0 +1,68 @@
+<!-- This is a test DTD. This DTD is a complete shambles, it doesn't -->
+<!-- have any meaning at all, it's really just a collection of test  -->
+<!-- declarations.                                                   -->
+
+<!NOTATION GIF SYSTEM>
+
+<!NOTATION DSSSL   PUBLIC "ISO/IEC 10179:1996//NOTATION
+                   DSSSL Architecture Definition Document//EN"
+                -- A document architecture conforming to the
+                   Architectural Form Definition Requirements of
+                   ISO/IEC 10744.     --
+>
+
+<!ENTITY % e1 "Para|block">
+<!ENTITY % e2 "%e1">
+<!ENTITY % e3 "%e2">
+<!ENTITY % doccontent "%e3">
+<!ENTITY foo "foo">
+
+<!ENTITY % common.attrib "ID ID #IMPLIED">
+
+<!ENTITY half   SDATA "[half  ]"--=fraction one-half-->
+<!ENTITY otherhalf "&#x00BD;">
+
+<!ELEMENT footnote (para+) -(footnote|table)>
+<!ELEMENT table (row+)>
+<!ELEMENT row (entry+)>
+<!ELEMENT entry (para+)>
+
+<!ELEMENT foo EMPTY>
+<!ELEMENT bar CDATA>
+
+<!ELEMENT EMPTY (foo)>
+<!ELEMENT CDATA (bar)>
+
+<!ELEMENT IndexTerm (primary, ((secondary, ((tertiary, (see|seealso+)?)
+		| see | seealso+)?) | see | seealso+)?) -(indexTERM)>
+<!ATTLIST indexterm 
+	%common.attrib;
+	type (startrange|endrange|singular) 'singular'
+        foo CDATA #FIXED "test"
+        lineannotation (lineannotation) 'lineannotation'
+        startref IDREF #CONREF
+        linkend IDREF #REQUIRED
+>
+
+<!ELEMENT (primary|secondary|tertiary|see|seealso) (#PCDATA)*>
+
+<!ELEMENT emph (#PCDATA)*>
+<!ELEMENT doc - O (title, (%doccontent;)+) +(indeXterm)>
+
+<!ENTITY % test.mod SYSTEM "test.mod">
+%test.mod;
+
+<!ENTITY % space '" "'>
+
+<!ELEMENT A (B|C)* -(D)>
+<!ELEMENT B (#PCDATA)*>
+<!ELEMENT C (#PCDATA|D)*>
+<!ELEMENT D (#PCDATA)*>
+
+<!ELEMENT (para|block) (#PCDATA|foo|bar|block|indexterm|A|B|C|D|footnote|table)*>
+<!ATTLIST Para
+	%common.attrib;
+	LANG	CDATA	#IMPLIED
+        SepChar CDATA   %space;
+        OtherAttr CDATA "&foo;"
+>
